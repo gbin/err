@@ -416,7 +416,7 @@ class ErrBot(Backend, StoreMixin):
             for cmd_filter in self.command_filters:
                 msg, cmd, args = cmd_filter(msg, cmd, args, dry_run)
                 if msg is None:
-                    return None, None, None
+                    return None, cmd, args
             return msg, cmd, args
         except Exception:
             log.exception(
@@ -430,7 +430,7 @@ class ErrBot(Backend, StoreMixin):
         # first it must go through the command filters
         msg, cmd, args = self._process_command_filters(msg, cmd, args, False)
         if msg is None:
-            log.info("Command %s blocked or deferred.", cmd)
+            log.info("Command \"%s\" blocked or deferred.", cmd)
             return
 
         frm = msg.frm

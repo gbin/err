@@ -562,7 +562,7 @@ def cmdfilter(*args, **kwargs):
                command is authorized or not.
             \"\"\"
             # If wishing to block the incoming command:
-            return None, None, None
+            return None, cmd, args
             # Otherwise pass data through to the (potential) next filter:
             return msg, cmd, args
 
